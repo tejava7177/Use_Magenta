@@ -10,63 +10,29 @@ SAVE_DIR = "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta/jazzModel"
 # ✅ 저장 디렉토리 생성
 os.makedirs(SAVE_DIR, exist_ok=True)
 
-def optimize_midi_features(midi_data):
-    """🎶 JSON 데이터 최적화: 중복 데이터 제거 및 압축"""
-    optimized_data = {}
+def transform_midi_to_events(midi_data):
+    """🎵 Transformer 학습을 위한 MIDI 데이터를 이벤트 시퀀스로 변환"""
+    transformed_data = {}
 
     for instrument, data in midi_data["track_data"].items():
-        # ✅ velocity 정리 (중복된 값이 많으면 대표값만 저장)
-        unique_velocities = list(set(note["velocity"] for note in data["melody"]))
-        unique_velocities = [max(10, v) for v in unique_velocities]  # 최소값 보정
+        note_events = []
 
-        if len(unique_velocities) > 5:
-            velocity_summary = {
-                "min": min(unique_velocities),
-                "max": max(unique_velocities),
-                "avg": sum(unique_velocities) // len(unique_velocities)
-            }
-        else:
-            velocity_summary = unique_velocities  # 그대로 유지
+        for note in data["melody"]:
+            start_time = int(round(note["start_time"] * 100))  # ✅ 100ms 단위 변환
+            end_time = int(round((note["start_time"] + note["duration"]) * 100))
 
-        # ✅ 코드 진행 압축 (반복되는 코드가 많으면 "횟수" 저장)
-        chord_sequences = []
-        prev_chord = None
-        repeat_count = 1
+            note_events.append({"event": "Note-On", "pitch": note["pitch"], "time": start_time, "velocity": note["velocity"]})
+            note_events.append({"event": "Note-Off", "pitch": note["pitch"], "time": end_time})
 
-        for chord in data["chords"]:
-            if prev_chord and prev_chord["chord"] == chord["chord"]:
-                repeat_count += 1
-            else:
-                if prev_chord:
-                    chord_sequences.append({"chord": prev_chord["chord"], "repeat": repeat_count})
-                repeat_count = 1
-                prev_chord = chord
-
-        # 마지막 코드 추가
-        if prev_chord:
-            chord_sequences.append({"chord": prev_chord["chord"], "repeat": repeat_count})
-
-        optimized_data[instrument] = {
-            "melody": [
-                {
-                    "pitch": note["pitch"],
-                    "time": round(note["start_time"], 2),
-                    "d": round(note["duration"], 2)
-                }
-                for note in data["melody"][:10]  # 샘플 10개 저장 (학습용)
-            ],
-            "chords": chord_sequences[:10],  # 샘플 10개 유지
-            "velocity": velocity_summary
+        transformed_data[instrument] = {
+            "events": sorted(note_events, key=lambda x: x["time"]),  # ✅ 시간 순서 정렬
+            "velocity": data["velocity"]  # ✅ velocity 정보 유지
         }
 
-        # ✅ playing_style이 존재하면 추가
-        if data["playing_style"]:
-            optimized_data[instrument]["playing_style"] = data["playing_style"]
-
-    return optimized_data
+    return transformed_data
 
 def extract_midi_features(midi_path):
-    """🎷 MIDI 파일에서 최적화된 악기별 데이터를 추출"""
+    """🎷 MIDI 파일에서 Transformer-friendly 데이터를 추출"""
     try:
         if midi_path.startswith("._"):  # ✅ 숨김 파일 무시
             return None
@@ -84,7 +50,7 @@ def extract_midi_features(midi_path):
             instrument_name = "Drums" if instrument.is_drum else pretty_midi.program_to_instrument_name(instrument.program)
 
             if instrument_name not in track_data:
-                track_data[instrument_name] = {"melody": [], "chords": [], "playing_style": {}}
+                track_data[instrument_name] = {"melody": [], "velocity": {}}
 
             # ✅ 멜로디 데이터 저장
             for note in instrument.notes:
@@ -95,23 +61,13 @@ def extract_midi_features(midi_path):
                     "velocity": note.velocity
                 })
 
-            # ✅ 코드 진행 저장 (3개 이상의 음이 동시에 연주될 경우 코드로 인식)
-            chord_buffer = []
-            for note in instrument.notes:
-                chord_buffer.append(note.pitch)
-                if len(chord_buffer) >= 3:
-                    track_data[instrument_name]["chords"].append({
-                        "chord": sorted(set(chord_buffer))
-                    })
-                    chord_buffer = []
-
-            # ✅ 연주 스타일 분석 (기타와 베이스)
-            if "Guitar" in instrument_name or "Bass" in instrument_name:
-                track_data[instrument_name]["playing_style"] = {
-                    "bending": any(note.pitch_bend for note in instrument.pitch_bends),
-                    "hammer_on": any(note.start < 0.1 for note in instrument.notes),
-                    "pull_off": any(note.end > 1.5 for note in instrument.notes),
-                }
+            # ✅ velocity 정리 (최소값 보정, 대표값 저장)
+            velocities = [note["velocity"] for note in track_data[instrument_name]["melody"]]
+            track_data[instrument_name]["velocity"] = {
+                "min": max(10, min(velocities)) if velocities else 10,
+                "max": max(velocities) if velocities else 127,
+                "avg": sum(velocities) // len(velocities) if velocities else 64
+            }
 
         return {
             "genre": "jazz",
@@ -120,14 +76,14 @@ def extract_midi_features(midi_path):
             "key": key,
             "instruments": list(track_data.keys()),
             "midi_file": os.path.basename(midi_path),
-            "track_data": optimize_midi_features({"track_data": track_data})
+            "track_data": transform_midi_to_events({"track_data": track_data})
         }
 
     except Exception as e:
-        print(f"⚠️ 오류 발생: {midi_path} - {e}")
+        #print(f"⚠️ 오류 발생: {midi_path} - {e}")
         return None
 
-# ✅ JSON 변환 및 저장 (압축된 JSON 파일 생성)
+# ✅ JSON 변환 및 저장 (전체 데이터셋 학습)
 def process_midi_files():
     midi_data_list = []
 
@@ -139,15 +95,13 @@ def process_midi_files():
                 midi_data_list.append(features)
                 print(f"📂 JSON 데이터 추가됨: {midi_file}")
 
-            if len(midi_data_list) >= 20:  # ✅ 20개까지만 저장
-                break
 
     return midi_data_list
 
 # ✅ 압축 JSON 저장 (.json.gz로 파일 크기 줄이기)
-json_path = os.path.join(SAVE_DIR, "jazz_dataset.json.gz")
+json_path = os.path.join(SAVE_DIR, "jazz_dataset_transformer.json.gz")
 
 with gzip.open(json_path, "wt", encoding="utf-8") as f:
-    json.dump({"jazz": process_midi_files()}, f, indent=4)
+    json.dump({"jazz": process_midi_files(max_files=5)}, f, indent=4)
 
-print(f"✅ JSON 데이터 저장 완료: {json_path}")
+print(f"✅ Transformer JSON 데이터 저장 완료: {json_path}")
