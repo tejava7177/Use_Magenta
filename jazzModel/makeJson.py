@@ -2,13 +2,18 @@ import os
 import json
 import gzip
 import pretty_midi
+import numpy as np
+from tqdm import tqdm  # ✅ 진행률 확인
+
 
 # ✅ MIDI 데이터셋 디렉토리 설정
 JAZZ_DIR = "/Volumes/Extreme SSD/lmd_classified/jazz"
 SAVE_DIR = "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta/jazzModel"
+JSON_SAVE_PATH = os.path.join(SAVE_DIR, "jazz_dataset_transformer.jsonl.gz")
 
 # ✅ 저장 디렉토리 생성
 os.makedirs(SAVE_DIR, exist_ok=True)
+
 
 def transform_midi_to_events(midi_data):
     """🎵 Transformer 학습을 위한 MIDI 데이터를 이벤트 시퀀스로 변환"""
@@ -18,18 +23,18 @@ def transform_midi_to_events(midi_data):
         note_events = []
 
         for note in data["melody"]:
-            start_time = int(round(note["start_time"] * 100))  # ✅ 100ms 단위 변환
-            end_time = int(round((note["start_time"] + note["duration"]) * 100))
-
-            note_events.append({"event": "Note-On", "pitch": note["pitch"], "time": start_time, "velocity": note["velocity"]})
-            note_events.append({"event": "Note-Off", "pitch": note["pitch"], "time": end_time})
+            note_events.append({"event": "Note-On", "pitch": note["pitch"], "time": int(note["start_time"]),
+                                "velocity": note["velocity"]})
+            note_events.append(
+                {"event": "Note-Off", "pitch": note["pitch"], "time": int(note["start_time"] + note["duration"])})
 
         transformed_data[instrument] = {
-            "events": sorted(note_events, key=lambda x: x["time"]),  # ✅ 시간 순서 정렬
-            "velocity": data["velocity"]  # ✅ velocity 정보 유지
+            "events": sorted(note_events, key=lambda x: x["time"]),
+            "velocity": data["velocity"]
         }
 
     return transformed_data
+
 
 def extract_midi_features(midi_path):
     """🎷 MIDI 파일에서 Transformer-friendly 데이터를 추출"""
@@ -39,6 +44,10 @@ def extract_midi_features(midi_path):
 
         midi_data = pretty_midi.PrettyMIDI(midi_path)
 
+        # ✅ 트랙이 없으면 제외
+        if not midi_data.instruments:
+            return None
+
         # ✅ 템포, 박자, 키 정보
         tempo = max(midi_data.estimate_tempo(), 120)
         time_signature = "4/4" if not midi_data.time_signature_changes else f"{midi_data.time_signature_changes[0].numerator}/{midi_data.time_signature_changes[0].denominator}"
@@ -47,7 +56,8 @@ def extract_midi_features(midi_path):
         track_data = {}
 
         for instrument in midi_data.instruments:
-            instrument_name = "Drums" if instrument.is_drum else pretty_midi.program_to_instrument_name(instrument.program)
+            instrument_name = "Drums" if instrument.is_drum else pretty_midi.program_to_instrument_name(
+                instrument.program)
 
             if instrument_name not in track_data:
                 track_data[instrument_name] = {"melody": [], "velocity": {}}
@@ -61,7 +71,7 @@ def extract_midi_features(midi_path):
                     "velocity": note.velocity
                 })
 
-            # ✅ velocity 정리 (최소값 보정, 대표값 저장)
+            # ✅ velocity 정리
             velocities = [note["velocity"] for note in track_data[instrument_name]["melody"]]
             track_data[instrument_name]["velocity"] = {
                 "min": max(10, min(velocities)) if velocities else 10,
@@ -80,28 +90,32 @@ def extract_midi_features(midi_path):
         }
 
     except Exception as e:
-        #print(f"⚠️ 오류 발생: {midi_path} - {e}")
+        print(f"❌ 오류 발생: {midi_path} - {e}")
         return None
 
-# ✅ JSON 변환 및 저장 (전체 데이터셋 학습)
-def process_midi_files():
-    midi_data_list = []
 
-    for midi_file in os.listdir(JAZZ_DIR):
-        if midi_file.endswith(".mid"):
+def process_midi_files():
+    """🎶 모든 MIDI 파일을 순차적으로 처리하고, JSONL로 저장"""
+    excluded_count = 0
+    total_processed = 0
+
+    with gzip.open(JSON_SAVE_PATH, "wt", encoding="utf-8") as f:
+        midi_files = [m for m in os.listdir(JAZZ_DIR) if m.endswith(".mid")]
+
+        for midi_file in tqdm(midi_files, desc="🎵 Processing MIDI Files"):
             midi_path = os.path.join(JAZZ_DIR, midi_file)
             features = extract_midi_features(midi_path)
+
             if features:
-                midi_data_list.append(features)
-                print(f"📂 JSON 데이터 추가됨: {midi_file}")
+                json.dump(features, f)
+                f.write("\n")  # ✅ JSONL 형식 (줄바꿈)
+                total_processed += 1
+            else:
+                excluded_count += 1
+
+    print(f"\n✅ JSONL 저장 완료: {JSON_SAVE_PATH}")
+    print(f"🚀 처리된 파일 수: {total_processed}, ❌ 제외된 파일 수: {excluded_count}")
 
 
-    return midi_data_list
-
-# ✅ 압축 JSON 저장 (.json.gz로 파일 크기 줄이기)
-json_path = os.path.join(SAVE_DIR, "jazz_dataset_transformer.json.gz")
-
-with gzip.open(json_path, "wt", encoding="utf-8") as f:
-    json.dump({"jazz": process_midi_files(max_files=5)}, f, indent=4)
-
-print(f"✅ Transformer JSON 데이터 저장 완료: {json_path}")
+# ✅ 실행
+process_midi_files()
