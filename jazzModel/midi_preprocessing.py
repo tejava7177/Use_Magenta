@@ -1,56 +1,65 @@
+# midi_preprocessing.py
 import json
 import gzip
 import torch
 from torch.utils.data import Dataset, DataLoader
 import numpy as np
-from tqdm import tqdm  # ✅ 진행률 표시
+from tqdm import tqdm
 
-# ✅ 데이터셋 경로 설정
+# ✅ JSONL 파일 경로
 JSONL_FILE = "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta/jazzModel/jazz_dataset_transformer.jsonl.gz"
+
+# ✅ JSONL 데이터를 한 번만 로드하고 캐싱 (전역 변수 사용)
+_cached_json_data = None
+
+def load_jsonl(jsonl_path):
+    """📂 JSONL 데이터를 한 번만 로드하고 캐싱"""
+    global _cached_json_data
+    if _cached_json_data is not None:
+        return _cached_json_data  # ✅ 이미 로드된 데이터 반환
+
+    data = []
+
+    # ✅ 전체 줄 개수 확인 (진행률 표시용)
+    with gzip.open(jsonl_path, "rt", encoding="utf-8") as f:
+        total_lines = sum(1 for _ in f)
+
+    # ✅ JSONL 파일 로드
+    with gzip.open(jsonl_path, "rt", encoding="utf-8") as f, tqdm(total=total_lines, desc="📂 Loading JSONL Data", unit=" lines") as pbar:
+        for line in f:
+            data.append(json.loads(line))
+            pbar.update(1)
+
+    _cached_json_data = data  # ✅ 캐싱하여 이후 호출 시 재사용
+    return data
 
 
 class MidiDataset(Dataset):
-    def __init__(self, jsonl_path):
-        self.data = []
+    """🎵 MIDI 데이터를 Transformer 학습용 Dataset으로 변환"""
 
-        # ✅ JSONL 파일의 총 줄 수를 미리 계산 (진행률 정확도 개선)
-        with gzip.open(jsonl_path, "rt", encoding="utf-8") as f:
-            total_lines = sum(1 for _ in f)  # ✅ 전체 줄 개수 확인
-
-        # ✅ tqdm에 전체 개수 지정하여 진행률 표시
-        with gzip.open(jsonl_path, "rt", encoding="utf-8") as f, tqdm(total=total_lines, desc="📂 Loading JSONL Data",
-                                                                      unit=" lines") as pbar:
-            for line in f:
-                self.data.append(json.loads(line))
-                pbar.update(1)  # ✅ 1줄씩 업데이트
-
-        self.max_length = 512  # ✅ Transformer 입력 길이 제한
+    def __init__(self, data):
+        self.data = data
+        self.max_length = 512  # ✅ Transformer 입력 시퀀스 길이 제한
 
     def tokenize(self, track_data):
         """
         ✅ MIDI 데이터를 Transformer 입력 형태로 변환 (Tokenize)
         """
-        tokens = []
-        for instrument, details in track_data.items():
-            for event in details["events"]:
-                event_type = 1 if event["event"] == "Note-On" else 2
-                tokens.append([
-                    event_type,  # 1 = Note-On, 2 = Note-Off
-                    event["pitch"],
-                    event["time"],
-                    event.get("velocity", 0)
-                ])
-        return tokens
+        return [
+            [1 if event["event"] == "Note-On" else 2, event["pitch"], round(event["time"]), event.get("velocity", 0)]
+            for details in track_data.values()
+            for event in details["events"]
+        ]
 
     def pad_sequence(self, sequence):
         """
         ✅ 시퀀스 길이를 self.max_length에 맞게 패딩
         """
-        if len(sequence) >= self.max_length:
-            return sequence[:self.max_length]
-        else:
-            pad_len = self.max_length - len(sequence)
-            return sequence + [[0, 0, 0, 0]] * pad_len  # 패딩 값 추가
+        sequence = sequence[:self.max_length]  # 길이 초과 부분 자르기
+        pad_len = self.max_length - len(sequence)
+        if pad_len > 0:
+            sequence.extend([[0, 0, 0, 0]] * pad_len)  # 패딩 추가
+        return torch.tensor(sequence, dtype=torch.long)
 
     def __len__(self):
         return len(self.data)
@@ -59,14 +68,9 @@ class MidiDataset(Dataset):
         item = self.data[idx]
         tokens = self.tokenize(item["track_data"])
         tokens = self.pad_sequence(tokens)
-        return torch.tensor(tokens, dtype=torch.long)
+        return tokens
 
-
-# ✅ 데이터 로드
-dataset = MidiDataset(JSONL_FILE)
+# ✅ JSONL 데이터를 한 번만 로드하여 미리 캐싱
+json_data = load_jsonl(JSONL_FILE)
+dataset = MidiDataset(json_data)
 dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
-
-# ✅ 진행 상황 확인 (tqdm 추가)
-for batch in tqdm(dataloader, desc="🚀 Processing DataLoader Batches", unit=" batch"):
-    print(batch.shape)  # ✅ Expected: (32, 512, 4)
-    break  # 첫 번째 배치만 확인
