@@ -22,3 +22,9 @@
 # # ✅ MIDI 저장
 # note_seq.sequence_proto_to_midi_file(generated_sequence, "generated_jazz.mid")
 # print("🎼 재즈 스타일 MIDI 생성 완료!")
+
+import torch
+
+print(f"🧠 사용하는 디바이스: {torch.device('mps' if torch.backends.mps.is_available() else 'cpu')}")
+print(f"✅ MPS 지원 여부: {torch.backends.mps.is_available()}")
+print(f"💻 GPU 사용 가능 여부: {torch.cuda.is_available()} (CUDA)")

@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01574f25-565e-42bc-9bad-464718ae843e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/jazzModel/midi_training.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jazzModel/midi_transformer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jazzModel/midi_preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/jazzModel/midi_preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jazzModel/midi_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/jazzModel/midi_training.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/useMagenta.py" beforeDir="false" afterPath="$PROJECT_DIR$/useMagenta.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,24 +43,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.midi_preprocessing.executor": "Run",
-    "Python.midi_training.executor": "Run",
-    "Python.midi_transformer.executor": "Run",
-    "Python.useMagenta.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.midi_preprocessing.executor&quot;: &quot;Run&quot;,
+    &quot;Python.midi_training.executor&quot;: &quot;Run&quot;,
+    &quot;Python.midi_transformer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.useMagenta.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.midi_training">
     <configuration name="midi_preprocessing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Use_Magenta" />
@@ -159,9 +157,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.midi_training" />
+        <item itemvalue="Python.useMagenta" />
         <item itemvalue="Python.midi_transformer" />
         <item itemvalue="Python.midi_preprocessing" />
-        <item itemvalue="Python.useMagenta" />
       </list>
     </recent_temporary>
   </component>
@@ -187,6 +185,7 @@
       <workItem from="1742287377028" duration="1998000" />
       <workItem from="1742346461489" duration="7673000" />
       <workItem from="1742355376942" duration="7320000" />
+      <workItem from="1742379182926" duration="32390000" />
     </task>
     <servers />
   </component>
@@ -194,9 +193,9 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Use_Magenta$midi_training.coverage" NAME="midi_training Coverage Results" MODIFIED="1742356216774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
-    <SUITE FILE_PATH="coverage/Use_Magenta$useMagenta.coverage" NAME="useMagenta Coverage Results" MODIFIED="1742028056703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$midi_training.coverage" NAME="midi_training Coverage Results" MODIFIED="1742524454600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
     <SUITE FILE_PATH="coverage/Use_Magenta$midi_preprocessing.coverage" NAME="midi_preprocessing Coverage Results" MODIFIED="1742353979715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$useMagenta.coverage" NAME="useMagenta Coverage Results" MODIFIED="1742522101266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Use_Magenta$midi_transformer.coverage" NAME="midi_transformer Coverage Results" MODIFIED="1742355153789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
   </component>
 </project>
