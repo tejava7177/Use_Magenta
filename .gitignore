@@ -1,1 +1,5 @@
 *.gz
+*.npy
+*.wav
+*.jsonl
+*.pth

@@ -1,59 +1,84 @@
 import librosa
 import librosa.display
 import numpy as np
-import matplotlib.pyplot as plt
 import json
 import os
+from tqdm import tqdm
 
-# [1] 사용자 입력 파일
-input_wav = "/Users/simjuheun/Desktop/test.wav"
-y, sr = librosa.load(input_wav, sr=None)
-duration = librosa.get_duration(y=y, sr=sr)
+# [0] 경로 설정
+AUDIO_DIR = "/Volumes/Extreme SSD/lmd_classified/jazzforwav"
+OUTPUT_DIR = "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta/MIDItowave"
+MEL_DIR = os.path.join(OUTPUT_DIR, "melspec")
+JSONL_PATH = os.path.join(OUTPUT_DIR, "mini_dataset_100.jsonl")
 
-# [2] 템포 & 비트
-tempo, beats = librosa.beat.beat_track(y=y, sr=sr)
-tempo = float(np.atleast_1d(tempo)[0])  # tempo is sometimes array
+os.makedirs(MEL_DIR, exist_ok=True)
 
-# [3] Onset 감지 → 밀도 계산
-onset_frames = librosa.onset.onset_detect(y=y, sr=sr)
-onset_times = librosa.frames_to_time(onset_frames, sr=sr)
-onset_density = len(onset_times) / duration
+# [1] ._로 시작하지 않는 .wav 파일 100개 선택
+wav_files = sorted([
+    f for f in os.listdir(AUDIO_DIR)
+    if f.endswith(".wav") and not f.startswith("._")
+])[:100]
 
-# [4] Pitch 추정
-f0 = librosa.yin(y, fmin=librosa.note_to_hz('C1'), fmax=librosa.note_to_hz('C6'), sr=sr)
-pitch_mean = float(np.mean(f0))
-pitch_min = float(np.min(f0))
-pitch_max = float(np.max(f0))
+jsonl_data = []
 
-# [5] RMS 에너지 (볼륨 느낌)
-rms = librosa.feature.rms(y=y)[0]
-rms_mean = float(np.mean(rms))
+for fname in tqdm(wav_files, desc="🎧 Processing WAV files"):
+    try:
+        input_wav = os.path.join(AUDIO_DIR, fname)
+        file_id = os.path.splitext(fname)[0]
+        mel_path = os.path.join(MEL_DIR, f"{file_id}.npy")
 
-# [6] Mel Spectrogram (for embedding later)
-mel_spec = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=64)
-mel_db = librosa.power_to_db(mel_spec, ref=np.max)
+        y, sr = librosa.load(input_wav, sr=None)
+        duration = librosa.get_duration(y=y, sr=sr)
 
-# [7] 시각화 (선택)
-plt.figure(figsize=(10, 4))
-librosa.display.specshow(mel_db, sr=sr, x_axis='time', y_axis='mel')
-plt.colorbar(format="%+2.0f dB")
-plt.title("Mel Spectrogram")
-plt.tight_layout()
-plt.show()
+        tempo, _ = librosa.beat.beat_track(y=y, sr=sr)
+        onset_frames = librosa.onset.onset_detect(y=y, sr=sr)
+        onset_times = librosa.frames_to_time(onset_frames, sr=sr)
+        onset_density = len(onset_times) / duration
 
-# [8] JSON 저장
-feature_dict = {
-    "tempo": tempo,
-    "duration": duration,
-    "onset_density": onset_density,
-    "pitch_mean": pitch_mean,
-    "pitch_min": pitch_min,
-    "pitch_max": pitch_max,
-    "rms_energy": rms_mean
-}
+        f0 = librosa.yin(y, fmin=librosa.note_to_hz('C1'),
+                         fmax=librosa.note_to_hz('C6'), sr=sr)
+        pitch_mean = float(np.mean(f0))
+        pitch_min = float(np.min(f0))
+        pitch_max = float(np.max(f0))
 
-output_path = "/Users/simjuheun/Desktop/test_audio_features.json"
-with open(output_path, "w") as f:
-    json.dump(feature_dict, f, indent=4)
+        rms = librosa.feature.rms(y=y)[0]
+        rms_mean = float(np.mean(rms))
 
-print(f"✅ 분석 완료! → {output_path}")
+        mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
+        mfcc_mean = np.mean(mfcc, axis=1).tolist()
+
+        mel_spec = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=80)
+        mel_db = librosa.power_to_db(mel_spec, ref=np.max)
+        np.save(mel_path, mel_db)
+
+        json_obj = {
+            "id": file_id,
+            "genre": "jazz",
+            "audio_path": input_wav,
+            "mel_path": mel_path,
+            "features": {
+                "tempo": float(tempo),
+                "duration": duration,
+                "pitch_mean": pitch_mean,
+                "pitch_min": pitch_min,
+                "pitch_max": pitch_max,
+                "rms_energy": rms_mean,
+                "onset_density": onset_density,
+                "mfcc_mean": mfcc_mean
+            }
+        }
+
+        jsonl_data.append(json_obj)
+
+    except Exception as e:
+        print(f"❌ {fname} 처리 중 오류 발생: {e}")
+
+# [2] JSONL 파일로 저장
+with open(JSONL_PATH, "w") as f:
+    for item in jsonl_data:
+        json.dump(item, f)
+        f.write("\n")
+
+print(f"\n✅ 총 {len(jsonl_data)}개 파일 처리 완료!")
+print(f"📁 JSONL 저장: {JSONL_PATH}")
+print(f"📁 Mel 저장 경로: {MEL_DIR}")

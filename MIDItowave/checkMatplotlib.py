@@ -5,7 +5,7 @@ import numpy as np
 import os
 
 # 예시로 사용할 파일
-wav_path = "/Volumes/Extreme SSD/lmd_classified/jazzforwav/84f8662aa07c7220c6b128c9e071a01e.wav"
+wav_path = "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta/MIDItowave/user_input/generated_user_output.wav"
 
 # 1. 로딩
 y, sr = librosa.load(wav_path, sr=None)  # 원본 샘플레이트 유지
