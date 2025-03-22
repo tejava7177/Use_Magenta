@@ -1,43 +1,19 @@
 import torch
 import random
 from mido import Message, MidiFile, MidiTrack, MetaMessage, bpm2tempo
+from chord_to_notes import CHORD_TO_NOTES  # 🎹 코드 구성음
 
-MODEL_PATH = "midi_transformer_20250321_115350.pth"
+# ✅ 모델 경로 및 디바이스 설정
+MODEL_PATH = "midi_transformer_20250321_220621.pth"
+device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
+# ✅ 코드 진행 설정 (8마디)
+CHORD_SEQUENCE = ["Cmaj7", "Gmaj7", "Fmin", "Cmaj7", "Dmaj7", "Gmaj7", "Fmaj7", "Gmaj7"]
+TICKS_PER_BEAT = 480
+BPM = 100
+TICKS_PER_BAR = TICKS_PER_BEAT * 4  # 4/4 기준
 
-def build_chord(chord_notes, time_offset, velocity_range=(80, 110)):
-    velocity = random.randint(*velocity_range)
-    return [[1, note, time_offset, velocity] for note in chord_notes]
-
-
-seed_sequence = []
-# Piano 트랙 (보이싱 + 아르페지오 적용)
-seed_sequence += build_chord([60, 64, 67], 0)  # C 코드 기본
-seed_sequence += build_chord([72, 76, 79], 120)  # C 코드 옥타브
-seed_sequence += build_chord([60, 64, 67], 240)  # 반복
-seed_sequence += build_chord([67, 71, 74], 480)  # G 코드
-seed_sequence += build_chord([79, 83, 86], 600)  # G 코드 옥타브
-seed_sequence += build_chord([65, 69, 72], 960)  # F 코드
-
-# Bass 트랙 (워킹 베이스 스타일 추가)
-seed_sequence += build_chord([36], 0, (70, 90))  # C 루트
-seed_sequence += build_chord([38], 120, (70, 90))  # 워킹음
-seed_sequence += build_chord([40], 240, (70, 90))  # 다른 보이싱
-seed_sequence += build_chord([43], 360, (70, 90))  # 베이스 리드
-seed_sequence += build_chord([31], 480, (70, 90))  # G 루트
-seed_sequence += build_chord([33], 600, (70, 90))  # 워킹음
-seed_sequence += build_chord([29], 960, (70, 90))  # F 루트
-
-
-# Drums 트랙 (스윙 리듬 기반 드럼 추가)
-def build_drum_pattern(time_offsets, velocity_range=(50, 90)):
-    return [[9, 36, t, random.randint(*velocity_range)] for t in time_offsets]  # Kick Drum
-
-
-seed_sequence += build_drum_pattern([0, 240, 480, 720, 960])  # 4-beat 패턴 추가
-
-
-# 모델 로드
+# ✅ 모델 정의 (학습 구조와 동일)
 class MidiTransformer(torch.nn.Module):
     def __init__(self, input_dim=4, embed_dim=128, num_heads=8, num_layers=4, dropout=0.1):
         super().__init__()
@@ -56,64 +32,80 @@ class MidiTransformer(torch.nn.Module):
         x = self.transformer_encoder(x)
         return self.fc_out(x)
 
+# ✅ 시드 시퀀스 생성 함수
+def generate_seed(chord_notes, bar_start_tick):
+    seed = []
+    for i, pitch in enumerate(chord_notes):
+        seed.append([
+            1,
+            pitch,
+            bar_start_tick + i * 60,
+            random.randint(70, 110)
+        ])
+    return seed
 
-# 모델 예측 함수
-def generate_notes(model, seed, total_events=1024):
+# ✅ 모델 기반 예측 함수 (각 코드마다 1마디씩 생성)
+@torch.no_grad()
+def generate_notes_for_chord(model, chord_notes, start_tick):
+    seed = generate_seed(chord_notes, start_tick)
     sequence = seed.copy()
-    with torch.no_grad():
-        for _ in range(total_events):
-            input_tensor = torch.tensor(sequence[-512:], dtype=torch.float32).unsqueeze(0).to(device)
-            output = model(input_tensor)
-            next_event = output[0, -1].cpu().tolist()
-            sequence.append(next_event)
+    current_time = start_tick
+
+    while current_time < start_tick + TICKS_PER_BAR:
+        input_tensor = torch.tensor(sequence[-512:], dtype=torch.float32).unsqueeze(0).to(device)
+        output = model(input_tensor)[0, -1].cpu().tolist()
+
+        etype = int(round(output[0])) % 2
+        pitch = int(round(max(40, min(100, output[1]))))
+        delay = int(round(max(30, min(240, output[2]))))
+        velocity = int(round(max(60, min(127, output[3]))))
+
+        current_time += delay
+        if current_time >= start_tick + TICKS_PER_BAR:
+            break
+
+        sequence.append([etype, pitch, current_time, velocity])
+        # note_off 추가
+        sequence.append([0, pitch, current_time + random.randint(30, 180), velocity])
+
     return sequence
 
-
-def split_tracks(sequence):
-    piano, bass, drums = [], [], []
-    for event in sequence:
-        etype, pitch, time, velocity = [int(round(x)) for x in event]
-        pitch = max(0, min(127, pitch))
-        time = max(30, min(180, time))  # ✅ 시간 간격 조정
-        velocity = max(60, min(110, velocity))
-        if pitch >= 50:
-            piano.append((etype, pitch, time, velocity))
-        elif pitch < 50:
-            bass.append((etype, pitch, time, velocity))
-        else:
-            drums.append((etype, pitch, time, velocity))
-    return piano, bass, drums
-
-
-def save_multitrack_midi(piano, bass, drums, filename="updated_piano_bass.mid"):
+# ✅ 전체 MIDI 저장 함수
+def save_midi(events, filename="generated_jazz_style.mid"):
     midi = MidiFile()
-    piano_track, bass_track, drum_track = MidiTrack(), MidiTrack(), MidiTrack()
-    midi.tracks.append(piano_track)
-    midi.tracks.append(bass_track)
-    midi.tracks.append(drum_track)
-    piano_track.append(MetaMessage('track_name', name='Piano', time=0))
-    bass_track.append(MetaMessage('track_name', name='Bass', time=0))
-    drum_track.append(MetaMessage('track_name', name='Drums', time=0))
-    piano_track.append(MetaMessage('set_tempo', tempo=bpm2tempo(100), time=0))
+    track = MidiTrack()
+    midi.tracks.append(track)
 
-    for etype, pitch, time, velocity in piano:
+    track.append(MetaMessage('track_name', name='Generated Piano', time=0))
+    track.append(MetaMessage('set_tempo', tempo=bpm2tempo(BPM), time=0))
+    track.append(Message('program_change', program=0, channel=0, time=0))
+
+    events.sort(key=lambda x: x[2])
+    prev_time = 0
+    for etype, pitch, abs_time, velocity in events:
+        delta = abs_time - prev_time
         msg_type = 'note_on' if etype == 1 else 'note_off'
-        piano_track.append(Message(msg_type, channel=0, note=pitch, velocity=velocity, time=time))
-    for etype, pitch, time, velocity in bass:
-        msg_type = 'note_on' if etype == 1 else 'note_off'
-        bass_track.append(Message(msg_type, channel=1, note=pitch, velocity=velocity, time=time))
-    for etype, pitch, time, velocity in drums:
-        msg_type = 'note_on' if etype == 1 else 'note_off'
-        drum_track.append(Message(msg_type, channel=9, note=pitch, velocity=velocity, time=time))
+        track.append(Message(msg_type, channel=0, note=pitch, velocity=velocity, time=delta))
+        prev_time = abs_time
+
     midi.save(filename)
-    print(f"🎹 업데이트된 MIDI 저장 완료: {filename}")
+    print(f"🎶 MIDI 저장 완료: {filename}")
 
+# ✅ 메인 실행
+def main():
+    print("🧠 모델 로딩 중...")
+    model = MidiTransformer().to(device)
+    model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
 
-device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
-model = MidiTransformer().to(device)
-model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
-model.eval()
+    all_events = []
+    for i, chord_name in enumerate(CHORD_SEQUENCE):
+        start_tick = i * TICKS_PER_BAR
+        chord_notes = CHORD_TO_NOTES.get(chord_name, [60, 64, 67])
+        print(f"🎼 코드: {chord_name}, 시작 tick: {start_tick}, 구성음: {chord_notes}")
+        events = generate_notes_for_chord(model, chord_notes, start_tick)
+        all_events.extend(events)
 
-generated = generate_notes(model, seed_sequence, total_events=1024)
-piano_events, bass_events, drum_events = split_tracks(generated)
-save_multitrack_midi(piano_events, bass_events, drum_events)
+    save_midi(all_events)
+
+if __name__ == "__main__":
+    main()
