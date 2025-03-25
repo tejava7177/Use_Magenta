@@ -8,7 +8,7 @@
       <change afterPath="$PROJECT_DIR$/hifi-gan/generate_hifigan.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/hifi-gan/train_hifigan.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MIDItowave/checkMel.py" beforeDir="false" afterPath="$PROJECT_DIR$/MIDItowave/checkMel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIDItowave/checkMatplotlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/MIDItowave/checkMatplotlib.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hifi-gan" beforeDir="false" afterPath="$PROJECT_DIR$/hifi-gan" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hifi-gan/config_v3.json" beforeDir="false" afterPath="$PROJECT_DIR$/hifi-gan/config_v3.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hifi-gan/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/hifi-gan/requirements.txt" afterDir="false" />
@@ -26,7 +26,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/hifi-gan" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -73,7 +73,7 @@
     "Python.useMagenta.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -90,7 +90,7 @@
       <recent name="$PROJECT_DIR$/MIDItowave" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.train_hifigan">
+  <component name="RunManager" selected="Python.checkMatplotlib">
     <configuration name="checkMatplotlib" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Use_Magenta" />
       <option name="ENV_FILES" value="" />
@@ -208,11 +208,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.checkMatplotlib" />
         <item itemvalue="Python.train_hifigan" />
         <item itemvalue="Python.checkMel" />
         <item itemvalue="Python.generate_from_custom" />
         <item itemvalue="Python.generate_hifigan" />
-        <item itemvalue="Python.checkMatplotlib" />
       </list>
     </recent_temporary>
   </component>
@@ -244,6 +244,7 @@
       <workItem from="1742704337715" duration="4851000" />
       <workItem from="1742792364973" duration="350000" />
       <workItem from="1742801654107" duration="1691000" />
+      <workItem from="1742878709138" duration="771000" />
     </task>
     <servers />
   </component>
@@ -259,7 +260,7 @@
     <SUITE FILE_PATH="coverage/Use_Magenta$checkMel.coverage" NAME="checkMel Coverage Results" MODIFIED="1742803714172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
     <SUITE FILE_PATH="coverage/Use_Magenta$midi_transformer.coverage" NAME="midi_transformer Coverage Results" MODIFIED="1742355153789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
     <SUITE FILE_PATH="coverage/Use_Magenta$chordTest.coverage" NAME="learnPiano Coverage Results" MODIFIED="1742624983702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazz_fineTuing" />
-    <SUITE FILE_PATH="coverage/Use_Magenta$checkMatplotlib.coverage" NAME="checkMatplotlib Coverage Results" MODIFIED="1742650185030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$checkMatplotlib.coverage" NAME="checkMatplotlib Coverage Results" MODIFIED="1742879622989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
     <SUITE FILE_PATH="coverage/Use_Magenta$check_jsonl__1_.coverage" NAME="check_jsonl (1) Coverage Results" MODIFIED="1742625963444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazz_fineTuing" />
     <SUITE FILE_PATH="coverage/Use_Magenta$midi_training.coverage" NAME="midi_training Coverage Results" MODIFIED="1742562380870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
     <SUITE FILE_PATH="coverage/Use_Magenta$generate_from_custom.coverage" NAME="generate_from_custom Coverage Results" MODIFIED="1742733599312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hifi-gan" />
