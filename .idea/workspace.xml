@@ -8,7 +8,6 @@
       <change afterPath="$PROJECT_DIR$/hifi-gan/generate_hifigan.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/hifi-gan/train_hifigan.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MIDItowave/checkMatplotlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/MIDItowave/checkMatplotlib.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hifi-gan" beforeDir="false" afterPath="$PROJECT_DIR$/hifi-gan" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hifi-gan/config_v3.json" beforeDir="false" afterPath="$PROJECT_DIR$/hifi-gan/config_v3.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hifi-gan/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/hifi-gan/requirements.txt" afterDir="false" />
@@ -48,41 +47,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.changeMIDItoWav.executor": "Run",
-    "Python.checkMIDI.executor": "Run",
-    "Python.checkMatplotlib.executor": "Run",
-    "Python.checkMel.executor": "Run",
-    "Python.check_jsonl (1).executor": "Run",
-    "Python.check_jsonl.executor": "Run",
-    "Python.chordTest.executor": "Debug",
-    "Python.generate_from_custom.executor": "Debug",
-    "Python.generate_from_user_input.executor": "Run",
-    "Python.generate_hifigan.executor": "Run",
-    "Python.learnPiano.executor": "Run",
-    "Python.main_train.executor": "Run",
-    "Python.makeJson.executor": "Run",
-    "Python.makeJsonl_User.executor": "Run",
-    "Python.makeMIDI.executor": "Run",
-    "Python.makeWAV.executor": "Run",
-    "Python.midi_preprocessing.executor": "Run",
-    "Python.midi_training.executor": "Run",
-    "Python.midi_transformer.executor": "Run",
-    "Python.train_hifigan.executor": "Run",
-    "Python.useMagenta.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.changeMIDItoWav.executor&quot;: &quot;Run&quot;,
+    &quot;Python.checkMIDI.executor&quot;: &quot;Run&quot;,
+    &quot;Python.checkMatplotlib.executor&quot;: &quot;Run&quot;,
+    &quot;Python.checkMel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.check_jsonl (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.check_jsonl.executor&quot;: &quot;Run&quot;,
+    &quot;Python.chordTest.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.generate_from_custom.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.generate_from_user_input.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generate_hifigan.executor&quot;: &quot;Run&quot;,
+    &quot;Python.learnPiano.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main_train.executor&quot;: &quot;Run&quot;,
+    &quot;Python.makeJson.executor&quot;: &quot;Run&quot;,
+    &quot;Python.makeJsonl_User.executor&quot;: &quot;Run&quot;,
+    &quot;Python.makeMIDI.executor&quot;: &quot;Run&quot;,
+    &quot;Python.makeWAV.executor&quot;: &quot;Run&quot;,
+    &quot;Python.midi_preprocessing.executor&quot;: &quot;Run&quot;,
+    &quot;Python.midi_training.executor&quot;: &quot;Run&quot;,
+    &quot;Python.midi_transformer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.train_hifigan.executor&quot;: &quot;Run&quot;,
+    &quot;Python.useMagenta.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/jazz_fineTuing" />
@@ -245,6 +244,7 @@
       <workItem from="1742792364973" duration="350000" />
       <workItem from="1742801654107" duration="1691000" />
       <workItem from="1742878709138" duration="771000" />
+      <workItem from="1742969666223" duration="1870000" />
     </task>
     <servers />
   </component>
