@@ -9,7 +9,7 @@ from tqdm import tqdm
 AUDIO_DIR = "/Volumes/Extreme SSD/lmd_classified/jazzforwav"
 OUTPUT_DIR = "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta/MIDItowave"
 MEL_DIR = os.path.join(OUTPUT_DIR, "melspec")
-JSONL_PATH = os.path.join(OUTPUT_DIR, "mini_dataset_100.jsonl")
+JSONL_PATH = os.path.join(OUTPUT_DIR, "mini_dataset_3200.jsonl")
 
 os.makedirs(MEL_DIR, exist_ok=True)
 
@@ -17,7 +17,7 @@ os.makedirs(MEL_DIR, exist_ok=True)
 wav_files = sorted([
     f for f in os.listdir(AUDIO_DIR)
     if f.endswith(".wav") and not f.startswith("._")
-])[:100]
+])[:3200]
 
 jsonl_data = []
 
