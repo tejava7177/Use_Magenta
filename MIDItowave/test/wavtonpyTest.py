@@ -12,7 +12,16 @@ os.makedirs(output_dir, exist_ok=True)
 
 # librosa 로딩 및 MEL 추출 (★ dB 변환 생략!)
 y, sr = librosa.load(input_wav, sr=22050)
-mel_spec = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=80, n_fft=1024, hop_length=256, win_length=1024)
+mel_spec = librosa.feature.melspectrogram(
+    y=y,
+    sr=sr,
+    n_mels=80,
+    n_fft=1024,
+    hop_length=256,
+    win_length=1024,
+    fmin=0,
+    fmax=8000  # 🔥 꼭 필요!
+)
 
 # 저장
 np.save(output_npy, mel_spec)

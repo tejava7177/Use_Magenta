@@ -1,30 +1,28 @@
-# from magenta.models.music_vae import configs
-# from magenta.models.music_vae.trained_model import TrainedModel
-# import note_seq
-#
-# # ✅ MusicVAE 모델 로드 (재즈 스타일 가능)
-# music_vae = TrainedModel(
-#     configs.CONFIG_MAP['hierarchical'],  # 코드 진행에 맞는 멜로디
-#     batch_size=4,
-#     checkpoint_dir_or_path='/path/to/music_vae/model'
-# )
-#
-# # ✅ 코드 진행을 바탕으로 시퀀스 생성
-# chord_progression = ["Cmaj7", "Gmaj7", "Fmin7", "Dmin7"]
-# input_sequence = note_seq.midi_file_to_note_sequence("input_chords.mid")
-#
-# # ✅ MusicVAE 멜로디 & 화성 생성
-# generated_sequence = music_vae.sample(n=1, length=32, temperature=0.8)[0]
-#
-# # ✅ GrooVAE로 드럼 트랙 추가
-# groove_sequence = groovae.generate(input_sequence, num_outputs=1, temperature=1.0)
-#
-# # ✅ MIDI 저장
-# note_seq.sequence_proto_to_midi_file(generated_sequence, "generated_jazz.mid")
-# print("🎼 재즈 스타일 MIDI 생성 완료!")
+import importlib
+import pkg_resources
 
-import torch
+# 공식 HiFi-GAN 권장 버전
+required_versions = {
+    "torch": "1.4.0",
+    "numpy": "1.17.4",
+    "librosa": "0.7.2",
+    "scipy": "1.4.1",
+    "tensorboard": "2.0",
+    "soundfile": "0.10.3.post1",
+    "matplotlib": "3.1.3",
+}
 
-print(f"🧠 사용하는 디바이스: {torch.device('mps' if torch.backends.mps.is_available() else 'cpu')}")
-print(f"✅ MPS 지원 여부: {torch.backends.mps.is_available()}")
-print(f"💻 GPU 사용 가능 여부: {torch.cuda.is_available()} (CUDA)")
+print("🔍 Checking HiFi-GAN compatible environment...\n")
+
+for pkg, expected_version in required_versions.items():
+    try:
+        module = importlib.import_module(pkg)
+        installed_version = pkg_resources.get_distribution(pkg).version
+        status = "✅ MATCH" if installed_version == expected_version else "⚠️ MISMATCH"
+        print(f"{pkg:12} | Installed: {installed_version:15} | Required: {expected_version:15} → {status}")
+    except ImportError:
+        print(f"{pkg:12} | ❌ Not Installed")
+    except Exception as e:
+        print(f"{pkg:12} | ⚠️ Error checking version: {e}")
+
+print("\n✅ 환경 점검 완료.")
