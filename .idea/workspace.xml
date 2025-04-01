@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01574f25-565e-42bc-9bad-464718ae843e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/MIDItowave/checknpyfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MIDItowave/test/backtowav.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MIDItowave/test/wavtonpyTest.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/hifi-gan/generate_hifigan.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hifi-gan/generate_universal.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hifi-gan/test.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/hifi-gan/train_hifigan.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MIDItowave/main_train.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MIDItowave/train_Model.py" beforeDir="false" afterPath="$PROJECT_DIR$/MIDItowave/train_Model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIDItowave/checkMatplotlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/MIDItowave/checkMatplotlib.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MIDItowave/checkMel.py" beforeDir="false" afterPath="$PROJECT_DIR$/MIDItowave/checkMel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hifi-gan" beforeDir="false" afterPath="$PROJECT_DIR$/hifi-gan" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hifi-gan/config_v3.json" beforeDir="false" afterPath="$PROJECT_DIR$/hifi-gan/config_v3.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hifi-gan/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/hifi-gan/requirements.txt" afterDir="false" />
@@ -51,16 +56,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.backtowav.executor": "Run",
     "Python.changeMIDItoWav.executor": "Run",
     "Python.checkMIDI.executor": "Run",
     "Python.checkMatplotlib.executor": "Run",
     "Python.checkMel.executor": "Run",
     "Python.check_jsonl (1).executor": "Run",
     "Python.check_jsonl.executor": "Run",
+    "Python.checknpyfile.executor": "Run",
     "Python.chordTest.executor": "Debug",
     "Python.generate_from_custom.executor": "Debug",
     "Python.generate_from_user_input.executor": "Run",
     "Python.generate_hifigan.executor": "Run",
+    "Python.generate_universal.executor": "Run",
     "Python.learnPiano.executor": "Run",
     "Python.main_train.executor": "Run",
     "Python.makeJson.executor": "Run",
@@ -70,9 +78,11 @@
     "Python.midi_preprocessing.executor": "Run",
     "Python.midi_training.executor": "Run",
     "Python.midi_transformer.executor": "Run",
+    "Python.test.executor": "Run",
     "Python.train_Model.executor": "Run",
     "Python.train_hifigan.executor": "Run",
     "Python.useMagenta.executor": "Run",
+    "Python.wavtonpyTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
@@ -92,8 +102,8 @@
       <recent name="$PROJECT_DIR$/MIDItowave" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.train_Model">
-    <configuration name="checkMatplotlib" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.backtowav">
+    <configuration name="backtowav" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Use_Magenta" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -102,12 +112,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MIDItowave" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MIDItowave/test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MIDItowave/checkMatplotlib.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MIDItowave/test/backtowav.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -116,7 +126,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="checkMel" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="checknpyfile" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Use_Magenta" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -130,7 +140,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MIDItowave/checkMel.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MIDItowave/checknpyfile.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -139,7 +149,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="makeJson" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="generate_hifigan" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Use_Magenta" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -148,12 +158,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MIDItowave" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hifi-gan" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MIDItowave/makeJson.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hifi-gan/generate_hifigan.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -162,7 +172,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="train_Model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="generate_universal" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Use_Magenta" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -171,12 +181,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MIDItowave" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hifi-gan" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MIDItowave/train_Model.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hifi-gan/generate_universal.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -185,7 +195,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="train_hifigan" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="wavtonpyTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Use_Magenta" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -194,12 +204,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MIDItowave" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MIDItowave/test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hifi-gan/train_hifigan.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MIDItowave/test/wavtonpyTest.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -210,11 +220,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.train_Model" />
-        <item itemvalue="Python.makeJson" />
-        <item itemvalue="Python.checkMatplotlib" />
-        <item itemvalue="Python.train_hifigan" />
-        <item itemvalue="Python.checkMel" />
+        <item itemvalue="Python.backtowav" />
+        <item itemvalue="Python.wavtonpyTest" />
+        <item itemvalue="Python.generate_universal" />
+        <item itemvalue="Python.generate_hifigan" />
+        <item itemvalue="Python.checknpyfile" />
       </list>
     </recent_temporary>
   </component>
@@ -249,7 +259,9 @@
       <workItem from="1742878709138" duration="771000" />
       <workItem from="1742969666223" duration="1870000" />
       <workItem from="1743263260318" duration="4525000" />
-      <workItem from="1743415772065" duration="2125000" />
+      <workItem from="1743415772065" duration="11787000" />
+      <workItem from="1743469303102" duration="3484000" />
+      <workItem from="1743482290422" duration="6323000" />
     </task>
     <servers />
   </component>
@@ -258,24 +270,29 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Use_Magenta$makeWAV.coverage" NAME="makeWAV Coverage Results" MODIFIED="1742630518639" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$test.coverage" NAME="test Coverage Results" MODIFIED="1743428044615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hifi-gan" />
     <SUITE FILE_PATH="coverage/Use_Magenta$check_jsonl.coverage" NAME="check_jsonl Coverage Results" MODIFIED="1742622435088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
     <SUITE FILE_PATH="coverage/Use_Magenta$changeMIDItoWav.coverage" NAME="changeMIDItoWav Coverage Results" MODIFIED="1742631371061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$backtowav.coverage" NAME="backtowav Coverage Results" MODIFIED="1743488616775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave/test" />
     <SUITE FILE_PATH="coverage/Use_Magenta$midi_preprocessing.coverage" NAME="midi_preprocessing Coverage Results" MODIFIED="1742353979715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$checkMel.coverage" NAME="checkMel Coverage Results" MODIFIED="1743478581966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$checkMatplotlib.coverage" NAME="checkMatplotlib Coverage Results" MODIFIED="1743477860880" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$makeMIDI.coverage" NAME="makeMIDI Coverage Results" MODIFIED="1742620124700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$makeJsonl_User.coverage" NAME="makeJsonl_User Coverage Results" MODIFIED="1742649364804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$checknpyfile.coverage" NAME="checknpyfile Coverage Results" MODIFIED="1743483082922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$generate_hifigan.coverage" NAME="generate_hifigan Coverage Results" MODIFIED="1743486121417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hifi-gan" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$generate_universal.coverage" NAME="generate_universal Coverage Results" MODIFIED="1743487261883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hifi-gan" />
     <SUITE FILE_PATH="coverage/Use_Magenta$useMagenta.coverage" NAME="useMagenta Coverage Results" MODIFIED="1742522101266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Use_Magenta$checkMel.coverage" NAME="checkMel Coverage Results" MODIFIED="1742803714172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
     <SUITE FILE_PATH="coverage/Use_Magenta$midi_transformer.coverage" NAME="midi_transformer Coverage Results" MODIFIED="1742355153789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
     <SUITE FILE_PATH="coverage/Use_Magenta$chordTest.coverage" NAME="learnPiano Coverage Results" MODIFIED="1742624983702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazz_fineTuing" />
-    <SUITE FILE_PATH="coverage/Use_Magenta$checkMatplotlib.coverage" NAME="checkMatplotlib Coverage Results" MODIFIED="1742879622989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
     <SUITE FILE_PATH="coverage/Use_Magenta$check_jsonl__1_.coverage" NAME="check_jsonl (1) Coverage Results" MODIFIED="1742625963444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazz_fineTuing" />
     <SUITE FILE_PATH="coverage/Use_Magenta$midi_training.coverage" NAME="midi_training Coverage Results" MODIFIED="1742562380870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
     <SUITE FILE_PATH="coverage/Use_Magenta$generate_from_custom.coverage" NAME="generate_from_custom Coverage Results" MODIFIED="1742733599312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hifi-gan" />
-    <SUITE FILE_PATH="coverage/Use_Magenta$train_hifigan.coverage" NAME="train_hifigan Coverage Results" MODIFIED="1742804395369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
-    <SUITE FILE_PATH="coverage/Use_Magenta$makeMIDI.coverage" NAME="makeMIDI Coverage Results" MODIFIED="1742620124700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$train_hifigan.coverage" NAME="train_hifigan Coverage Results" MODIFIED="1743469346461" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
     <SUITE FILE_PATH="coverage/Use_Magenta$generate_from_user_input.coverage" NAME="generate_from_user_input Coverage Results" MODIFIED="1742649949887" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
     <SUITE FILE_PATH="coverage/Use_Magenta$makeJson.coverage" NAME="makeJson Coverage Results" MODIFIED="1743263809202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
     <SUITE FILE_PATH="coverage/Use_Magenta$main_train.coverage" NAME="main_train Coverage Results" MODIFIED="1742648944852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
-    <SUITE FILE_PATH="coverage/Use_Magenta$makeJsonl_User.coverage" NAME="makeJsonl_User Coverage Results" MODIFIED="1742649364804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
-    <SUITE FILE_PATH="coverage/Use_Magenta$generate_hifigan.coverage" NAME="generate_hifigan Coverage Results" MODIFIED="1742704476432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hifi-gan" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$wavtonpyTest.coverage" NAME="wavtonpyTest Coverage Results" MODIFIED="1743487916534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave/test" />
     <SUITE FILE_PATH="coverage/Use_Magenta$train_Model.coverage" NAME="train_Model Coverage Results" MODIFIED="1743417535065" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MIDItowave" />
     <SUITE FILE_PATH="coverage/Use_Magenta$checkMIDI.coverage" NAME="checkMIDI Coverage Results" MODIFIED="1742619014602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
   </component>

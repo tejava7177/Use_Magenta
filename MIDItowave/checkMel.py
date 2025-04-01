@@ -18,9 +18,12 @@ class AttrDict(dict):
         super().__init__(*args, **kwargs)
         self.__dict__ = self
 
-# ✅ 기본 설정
-mel_path = "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta/MIDItowave/melspec/01fd2c93d1267abc21857d6a62996925.npy"
+# ✅ 설정
+mel_path = "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta/MIDItowave/melspec/2a863c15e2a9f0d56d4071ff9a38a130.npy"
 file_id = os.path.splitext(os.path.basename(mel_path))[0]
+output_dir = "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta/MIDItowave/result"
+os.makedirs(output_dir, exist_ok=True)
+
 sr = 22050
 n_fft = 1024
 hop_length = 256
@@ -29,7 +32,7 @@ win_length = 1024
 # ✅ mel 불러오기
 print(f"📥 Loading mel-spectrogram: {mel_path}")
 mel_db = np.load(mel_path)
-print(f"✅ Loaded mel shape: {mel_db.shape}")  # (n_mels, T)
+print(f"✅ Loaded mel shape: {mel_db.shape}")
 
 # ✅ 시각화
 plt.figure(figsize=(10, 4))
@@ -42,23 +45,25 @@ plt.show()
 # ✅ dB → Power
 mel = librosa.db_to_power(mel_db)
 
-# # ✅ [1] Griffin-Lim 변환
-# print("🔊 Generating waveform with Griffin-Lim...")
-# wav_griffin = librosa.feature.inverse.mel_to_audio(
-#     mel, sr=sr,
-#     n_fft=n_fft, hop_length=hop_length,
-#     win_length=win_length, n_iter=60
-# )
-# griffin_output_path = f"{file_id}_griffin_ver.wav"
-# sf.write(griffin_output_path, wav_griffin, sr)
-# print(f"✅ Griffin-Lim WAV 저장 완료: {griffin_output_path}")
+# ✅ Griffin-Lim
+print("🔊 Generating waveform with Griffin-Lim...")
+wav_griffin = librosa.feature.inverse.mel_to_audio(
+    mel, sr=sr,
+    n_fft=n_fft, hop_length=hop_length,
+    win_length=win_length, n_iter=60
+)
+
+# ✅ 저장
+griffin_output_path = os.path.join(output_dir, f"{file_id}_griffin_ver.wav")
+sf.write(griffin_output_path, wav_griffin, sr)
+print(f"✅ Griffin-Lim WAV 저장 완료: {griffin_output_path}")
 
 # ✅ [2] HiFi-GAN 변환
 print("🤖 Generating waveform with HiFi-GAN...")
 
 # 설정 불러오기
 config_path = "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta/hifi-gan/config_v3.json"
-model_ckpt = "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta/hifi-gan/g_custom.pth"
+model_ckpt = "/Users/simjuheun/Desktop/개인프로젝트/Use_Magenta/MIDItowave/g_custom_e10.pth"
 
 with open(config_path) as f:
     config = json.load(f)
