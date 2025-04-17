@@ -93,6 +93,7 @@ try:
     midi.write(temp_mid)
 
     # fluidsynth 실행
+
     subprocess.run([
         "fluidsynth",
         "-ni", SF2_PATH,
@@ -105,3 +106,5 @@ try:
 
 except Exception as e:
     print(f"❌ 변환 실패: {e}")
+
+    #테스트용 수정 코드
