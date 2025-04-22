@@ -9,7 +9,7 @@
       <change afterPath="$PROJECT_DIR$/hifi-gan/generate_universal.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/hifi-gan/test.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/hifi-gan/train_hifigan.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MIDItowave/changeMIDItoWav.py" beforeDir="false" afterPath="$PROJECT_DIR$/MIDItowave/changeMIDItoWav.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hifi-gan" beforeDir="false" afterPath="$PROJECT_DIR$/hifi-gan" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hifi-gan/config_v3.json" beforeDir="false" afterPath="$PROJECT_DIR$/hifi-gan/config_v3.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hifi-gan/inference_e2e.py" beforeDir="false" afterPath="$PROJECT_DIR$/hifi-gan/inference_e2e.py" afterDir="false" />
@@ -261,6 +261,8 @@
       <workItem from="1743469303102" duration="3484000" />
       <workItem from="1743482290422" duration="9214000" />
       <workItem from="1744706460637" duration="201000" />
+      <workItem from="1744880866555" duration="353000" />
+      <workItem from="1745133792172" duration="5000" />
     </task>
     <servers />
   </component>
