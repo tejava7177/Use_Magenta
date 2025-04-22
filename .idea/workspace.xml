@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01574f25-565e-42bc-9bad-464718ae843e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/SongMaker_score/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SongMaker_score/midi/test.mid" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SongMaker_score/utils/midi_to_score.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/hifi-gan/generate_hifigan.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/hifi-gan/generate_universal.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/hifi-gan/test.py" afterDir="false" />
@@ -50,57 +53,62 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.backtowav.executor&quot;: &quot;Run&quot;,
-    &quot;Python.changeMIDItoWav.executor&quot;: &quot;Run&quot;,
-    &quot;Python.checkMIDI.executor&quot;: &quot;Run&quot;,
-    &quot;Python.checkMatplotlib.executor&quot;: &quot;Run&quot;,
-    &quot;Python.checkMel.executor&quot;: &quot;Run&quot;,
-    &quot;Python.check_jsonl (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.check_jsonl.executor&quot;: &quot;Run&quot;,
-    &quot;Python.checknpyfile.executor&quot;: &quot;Run&quot;,
-    &quot;Python.chordTest.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.generate_from_custom.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.generate_from_user_input.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generate_hifigan.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generate_universal.executor&quot;: &quot;Run&quot;,
-    &quot;Python.inference_e2e.executor&quot;: &quot;Run&quot;,
-    &quot;Python.learnPiano.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main_train.executor&quot;: &quot;Run&quot;,
-    &quot;Python.makeJson.executor&quot;: &quot;Run&quot;,
-    &quot;Python.makeJsonl_User.executor&quot;: &quot;Run&quot;,
-    &quot;Python.makeMIDI.executor&quot;: &quot;Run&quot;,
-    &quot;Python.makeWAV.executor&quot;: &quot;Run&quot;,
-    &quot;Python.midi_preprocessing.executor&quot;: &quot;Run&quot;,
-    &quot;Python.midi_training.executor&quot;: &quot;Run&quot;,
-    &quot;Python.midi_transformer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.train_Model.executor&quot;: &quot;Run&quot;,
-    &quot;Python.train_hifigan.executor&quot;: &quot;Run&quot;,
-    &quot;Python.useMagenta.executor&quot;: &quot;Run&quot;,
-    &quot;Python.wavtonpyTest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/simjuheun/Desktop/myProject/Use_Magenta&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.backtowav.executor": "Run",
+    "Python.changeMIDItoWav.executor": "Run",
+    "Python.checkMIDI.executor": "Run",
+    "Python.checkMatplotlib.executor": "Run",
+    "Python.checkMel.executor": "Run",
+    "Python.check_jsonl (1).executor": "Run",
+    "Python.check_jsonl.executor": "Run",
+    "Python.checknpyfile.executor": "Run",
+    "Python.chordTest.executor": "Debug",
+    "Python.generate_from_custom.executor": "Debug",
+    "Python.generate_from_user_input.executor": "Run",
+    "Python.generate_hifigan.executor": "Run",
+    "Python.generate_universal.executor": "Run",
+    "Python.inference_e2e.executor": "Run",
+    "Python.learnPiano.executor": "Run",
+    "Python.main_train.executor": "Run",
+    "Python.makeJson.executor": "Run",
+    "Python.makeJsonl_User.executor": "Run",
+    "Python.makeMIDI.executor": "Run",
+    "Python.makeWAV.executor": "Run",
+    "Python.midi_preprocessing.executor": "Run",
+    "Python.midi_to_score.executor": "Run",
+    "Python.midi_training.executor": "Run",
+    "Python.midi_transformer.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.train_Model.executor": "Run",
+    "Python.train_hifigan.executor": "Run",
+    "Python.useMagenta.executor": "Run",
+    "Python.wavtonpyTest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/simjuheun/Desktop/myProject/Use_Magenta/SongMaker_score/midi",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/SongMaker_score/midi" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/SongMaker_score" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/hifi-gan/universal" />
       <recent name="$PROJECT_DIR$/jazz_fineTuing" />
       <recent name="$PROJECT_DIR$/hifi-gan" />
-      <recent name="$PROJECT_DIR$/MIDItowave" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.changeMIDItoWav">
+  <component name="RunManager" selected="Python.midi_to_score">
     <configuration name="backtowav" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Use_Magenta" />
       <option name="ENV_FILES" value="" />
@@ -170,6 +178,29 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="midi_to_score" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Use_Magenta" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SongMaker_score/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SongMaker_score/utils/midi_to_score.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="useMagenta" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Use_Magenta" />
       <option name="ENV_FILES" value="" />
@@ -193,36 +224,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="wavtonpyTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Use_Magenta" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MIDItowave/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MIDItowave/test/wavtonpyTest.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.midi_to_score" />
         <item itemvalue="Python.changeMIDItoWav" />
         <item itemvalue="Python.useMagenta" />
         <item itemvalue="Python.checknpyfile" />
         <item itemvalue="Python.backtowav" />
-        <item itemvalue="Python.wavtonpyTest" />
       </list>
     </recent_temporary>
   </component>
@@ -263,6 +271,7 @@
       <workItem from="1744706460637" duration="201000" />
       <workItem from="1744880866555" duration="353000" />
       <workItem from="1745133792172" duration="5000" />
+      <workItem from="1745314130833" duration="2134000" />
     </task>
     <servers />
   </component>
@@ -284,6 +293,7 @@
     <SUITE FILE_PATH="coverage/Use_Magenta$generate_hifigan.coverage" NAME="generate_hifigan Coverage Results" MODIFIED="1743486121417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hifi-gan" />
     <SUITE FILE_PATH="coverage/Use_Magenta$generate_universal.coverage" NAME="generate_universal Coverage Results" MODIFIED="1743487261883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hifi-gan" />
     <SUITE FILE_PATH="coverage/Use_Magenta$inference_e2e.coverage" NAME="inference_e2e Coverage Results" MODIFIED="1743489327358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hifi-gan" />
+    <SUITE FILE_PATH="coverage/Use_Magenta$midi_to_score.coverage" NAME="midi_to_score Coverage Results" MODIFIED="1745315908229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SongMaker_score/utils" />
     <SUITE FILE_PATH="coverage/Use_Magenta$useMagenta.coverage" NAME="useMagenta Coverage Results" MODIFIED="1743491461453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Use_Magenta$midi_transformer.coverage" NAME="midi_transformer Coverage Results" MODIFIED="1742355153789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazzModel" />
     <SUITE FILE_PATH="coverage/Use_Magenta$chordTest.coverage" NAME="learnPiano Coverage Results" MODIFIED="1742624983702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jazz_fineTuing" />
